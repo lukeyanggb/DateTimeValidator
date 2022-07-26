@@ -9,13 +9,13 @@ The Date Time Validator program is a simple Java program that can:
 
 ## Requirements
 
-* Java 14
+* Java 8 or over
 
 ## Assumptions
 
 * The program knows the date-time format of test data(i.e., `dateTimeFormat` in TestDataGenerator). All test data has the same date-time format.
 * The input date-time values have duplicates. Values are generated randomly and can be parsed into the ISO 8601 format.
-* Year: The randomly generated test data are between Year 1900 to Year 2021. But the program should work for all valid date-time values.
+* Year: The randomly generated test data are between Year 1900 to Year 2030. But the program should work for all valid date-time values.
 * Days in a month: For simplicity, months can have up to 31 days (i.e., February 31st is considered valid though there is no 31th day in February).
 * Time zone: According to the [Coordinated Univerisal Time (UTC)](https://en.m.wikipedia.org/wiki/Time_zone), some countries and regions use UTC-12:00, UTC+12:45, UTC+13:00, UTC+14:00. For the purpose of this program, these time zones are considered invalid. Only UTC-11:00 to UTC+12:00 are considered valid.
   <img src='img/World_Time_Zones_Map.png' height=300>
@@ -36,7 +36,4 @@ The Date Time Validator program is a simple Java program that can:
 
 ## Steps:
 
-1) Step
-1) Step
-1) Step
-1) Step
+1) PENDING
