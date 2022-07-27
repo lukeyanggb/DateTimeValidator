@@ -7,7 +7,7 @@ The Date Time Validator program is a simple Java program that can:
 1. Read a large list of date-time values from a `txt` file
 1. Validate the date-time value, format it into the standard ISO 8601 format: YYYY-MM-DDThh:mm:ssTZD. For example, `2022-07-20T18:01:02Z`. Details see [ISO 8601 wikipedia page](https://en.wikipedia.org/wiki/ISO_8601) and [offical ISO page](https://www.iso.org/iso-8601-date-and-time-format.html).
 1. Duplicate date-time values are dropped. Depending on the requirements, duplicates can be removed in two ways:
-    1. `UniqueMoment`: Two diffrent date-time values in ISO 8601 format at the same moment are considered as duplicates: `2022-07-20T18:01:02Z` and `2022-07-20T15:01:02-03:00`. This is the defualt setting.
+    1. `UniqueMoment`: Two different date-time values in ISO 8601 format at the same moment are considered as duplicates: `2022-07-20T18:01:02Z` and `2022-07-20T15:01:02-03:00`. This is the defualt setting.
     1. `UniqueString`: Date-time values at the same moment are not considered as duplicates as long as they are at different time zones.
 1) Write the formatted unique date-time values into a txt file.  
 
@@ -15,6 +15,7 @@ The Date Time Validator program is a simple Java program that can:
 ## Requirements
 
 * Java 8 or over
+* Junit 5 or over
 
 ## Assumptions
 
@@ -67,4 +68,4 @@ The Date Time Validator program is a simple Java program that can:
 
 ## Notes:
 * Unique date-time values size limit: According to [HashSet.java source code](http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/687fd7c7986d/src/share/classes/java/util/HashSet.java), the size limit should be `Integer.MAX_VLAUE`, which is 32 bits number at 2147483647, slightly more than 2 billion. When the size exceeds Integer.MAX_VALUE, it overflows. 
-* If the size of unique date time values is large, options can be using a relational SQL database or noSQL database to store hashing keys. Using LRU cache for faster performance as it allows false negatives but no false positives. If a date-time value is present in LRU cache, there is no need to check with database in disk.
+* If the size of unique date time values is large, options can be using a __relational SQL database or noSQL database__ to store hashing keys. Using __LRU cache__ for faster performance as it allows false negatives but no false positives. If a date-time value is present in LRU cache, there is no need to check with database in disk.
