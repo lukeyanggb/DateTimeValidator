@@ -5,19 +5,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         // INPUTS HERE
         Path input = Paths.get("data/test_data/100000_Size_10000_Duplicates_Format1.txt");
-        long size = 100000L, duplicates = 10000L, writeCount = 0L; // duplicates number has to be smaller than size
+        long size = 100000L, duplicates = 10000L; // duplicates value has to be smaller than the size value.
+        if (duplicates > size) {
+            throw new IllegalArgumentException("Duplicates number is greater than the size number!");
+        }
         String dateTimeFormat = "YYYY-MM-DDThh:mm:ssTZD";
-        Path output = Paths.get("data/output_data/100000_Size_10000_Duplicates_UniqueMoments_Format1.txt");
-
         // generate test data
         // constructor signature: Path path, int size, int duplicates, String dateTimeFormat
-//        TestDataGenerator testDataGenerator = new TestDataGenerator(input, size, duplicates, dateTimeFormat);
-//        testDataGenerator.generateTestData();
+        TestDataGenerator testDataGenerator = new TestDataGenerator(input, size, duplicates, dateTimeFormat);
+        testDataGenerator.generateTestData();
+        // output file path
+        Path output = Paths.get("data/output_data/100000_Size_10000_Duplicates_UniqueMoments_Format1.txt");
 
         // intended output file
         Files.deleteIfExists(output);
@@ -38,7 +42,6 @@ public class Main {
 //                 Use the following method for checking unique ISO 8601 date-time strings.
 //                dateTimeValue = dateTimeValidationChecker.checkUniqueStrings();
                 if (dateTimeValue != null) {
-                    writeCount ++;
                     writer.write(dateTimeValue);
                     writer.newLine();
                 }
@@ -55,7 +58,7 @@ public class Main {
         writeLogs.write("Input format: " + dateTimeFormat + "\n");
         writeLogs.write("Input size: " + (size+duplicates) + "\n");
         writeLogs.write("Input copied duplicates: " + duplicates + "\n");
-        writeLogs.write("The size of valid date-time value is " + writeCount + "\n");
+        writeLogs.write("The size of valid date-time value is " + dateTimeValidationChecker.getUniqueMomentsSize() + "\n");
         writeLogs.newLine();
         writeLogs.close();
     }

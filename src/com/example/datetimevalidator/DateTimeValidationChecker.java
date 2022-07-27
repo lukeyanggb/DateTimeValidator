@@ -119,4 +119,12 @@ public class DateTimeValidationChecker {
         }
         return true;
     }
+
+    public int getUniqueMomentsSize(){
+        return storedUniqueMoments.size();
+    }
+
+    public int getUniqueStringsSize(){
+        return storedUniqueStrings.size();
+    }
 }

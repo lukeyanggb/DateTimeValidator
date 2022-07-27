@@ -59,4 +59,9 @@ The Date Time Validator program is a simple Java program that can:
     2003-01-01T05:00:00Z
     ```
 
-* Testing results checkout `data/logs.txt`.
+* Testing results see `data/logs.txt`.
+
+
+## Notes:
+* Unique date-time values size limit: According to [HashSet.java source code](http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/687fd7c7986d/src/share/classes/java/util/HashSet.java), the size limit should be `Integer.MAX_VLAUE`, which is 32 bits number at 2147483647, slightly more than 2 billion. When the size exceeds Integer.MAX_VALUE, it overflows. 
+* If the size of unique date time values is large, options can be using a relational SQL database or noSQL database to store hashing keys. Using LRU cache for faster performance as it allows false negatives but no false positives. If a date-time value is present in LRU cache, there is no need to check with database in disk.
