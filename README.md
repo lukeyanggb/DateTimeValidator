@@ -24,6 +24,7 @@ The Date Time Validator program is a simple Java program that can:
 * Days in a month: For simplicity, months can have up to 31 days (i.e., February 31st is considered valid though there is no 31th day in February).
 * Time zone: According to the [Coordinated Univerisal Time (UTC)](https://en.m.wikipedia.org/wiki/Time_zone), some countries and regions use UTC-12:00, UTC+12:45, UTC+13:00, UTC+14:00. For the purpose of this program, these time zones are considered invalid. Only UTC-11:00 to UTC+12:00 are considered valid.
   <img src='img/World_Time_Zones_Map.png' height=300>
+
   Time zones of the world
 
 
@@ -32,13 +33,30 @@ The Date Time Validator program is a simple Java program that can:
 * To successfully create test data, all the date time information are required: `YYYY` for year, `MM` for month, `DD` for day, `hh` for hour, `mm` for minute, `ss` for second, `TZD` for time zone. All arguments can only present in format once, otherwise will be invalid `dateTimeFormat`.iY
 * `TZD` conforms ISO 8601 time zone designator: (“Z” for GMT or +hh:mm or -hh:mm)
 * Examples of valid `dateTimeFormat` (Inspired from [SimpleDateFormat Documentation](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html)), sample test data see the `data/example_patterns` directory:
-  > YYYY-MM-DDThh:mm:ssTZD: 2022-07-20T15:01:02-03:00
+  > Format 1: YYYY-MM-DDThh:mm:ssTZD: 2022-07-20T15:01:02-03:00
 
-  > YYYY.MM.DD at hh:mm:ss TZD: 2022.07.20 at 15:01:02 -03:00
+  > Format 2: YYYY.MM.DD at hh:mm:ss TZD: 2022.07.20 at 15:01:02 -03:00
 
-  > MM/DD/YYYY: hh:mm:ss, TZD: 07/20/2022: 15:01:02, -03:00
+  > Format 3: MM/DD/YYYY: hh:mm:ss, TZD: 07/20/2022: 15:01:02, -03:00
 
+  > etc.
+* Sample test data:
+  > 100000_Size_0_Duplicates_Format1.txt: 100,000 randomly generated date-time values in Format 1 with 0 copied duplicated values.
+  > 100000_Size_10000_Duplicates_Format1.txt: 100,000 randomly generated date-time values in Format 1 with 10,000 copied duplicated values.
+  > 100000_Size_10000__Duplicates_Format2.txt: 100,000 randomly generated date-time values in Format 2 with 10,000 copied duplicated values.
+  > 100000_Size_10000__Duplicates_Format3.txt: 100,000 randomly generated date-time values in Format 3 with 10,000 copied duplicated values.
+  
+  > Manually_typed_test_data.txt (should have 4 unique data-time moments, 6 unique date-time strings):
+    ```
+    2000-01-01T00:00:00-05:00
+    2000-01-01T00:00:00-05:00
+    2000-01-01T05:00:00Z
+    2000-01-01T05:00:00Z
+    2000-01-01T10:00:00+05:00
+    2000-01-01T10:00:00+05:00
+    2001-01-01T05:00:00Z
+    2002-01-01T05:00:00Z
+    2003-01-01T05:00:00Z
+    ```
 
-## Steps:
-
-1) PENDING
+* Testing results checkout `data/logs.txt`.

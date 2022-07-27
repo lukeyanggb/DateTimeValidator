@@ -12,12 +12,12 @@ public class Main {
         Path input = Paths.get("data/test_data/100000_Size_10000_Duplicates_Format1.txt");
         long size = 100000L, duplicates = 10000L, writeCount = 0L; // duplicates number has to be smaller than size
         String dateTimeFormat = "YYYY-MM-DDThh:mm:ssTZD";
-        Path output = Paths.get("data/output_data/100000_Size_10000_Duplicates_UniqueStrings_Format1.txt");
+        Path output = Paths.get("data/output_data/100000_Size_10000_Duplicates_UniqueMoments_Format1.txt");
 
         // generate test data
         // constructor signature: Path path, int size, int duplicates, String dateTimeFormat
-        TestDataGenerator testDataGenerator = new TestDataGenerator(input, size, duplicates, dateTimeFormat);
-        testDataGenerator.generateTestData();
+//        TestDataGenerator testDataGenerator = new TestDataGenerator(input, size, duplicates, dateTimeFormat);
+//        testDataGenerator.generateTestData();
 
         // intended output file
         Files.deleteIfExists(output);

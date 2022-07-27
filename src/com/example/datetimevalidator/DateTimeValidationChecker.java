@@ -71,7 +71,7 @@ public class DateTimeValidationChecker {
         }
         timeZoneAdjustment = timezone.equals("Z")? 0 : Long.parseLong(timezone.substring(0, 3));
         absoluteTime = (Long.parseLong(year)*12*31*24*60*60) + (Long.parseLong(month)*31*24*60*60)
-                + (Long.parseLong(day)*24*60*60) + (Long.parseLong(hour)+timeZoneAdjustment+1)*60*60
+                + (Long.parseLong(day)*24*60*60) + (Long.parseLong(hour)-timeZoneAdjustment)*60*60
                 + (Long.parseLong(minute)*60) + Long.parseLong(second);
         // store the date-time value as dateTimeValue
         stringBuilder.append(year).append("-").append(month).append("-")
