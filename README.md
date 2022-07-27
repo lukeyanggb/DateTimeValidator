@@ -3,11 +3,15 @@
 
 ### Overview
 The Date Time Validator program is a simple Java program that can:
-  1) Generate test data with customized date time pattern, customized data size, and duplicated values (see `Test Data` section).
-  1) Read a large list of date-time values from a `txt` file
-  1) Validate the date-time value, format it into the standard ISO 8601 format: YYYY-MM-DDThh:mm:ssTZD. For example, `2022-07-20T18:01:02Z`, `2022-07-20T15:01:02-03:00` (These two are at the same moment). Details see [ISO 8601 wikipedia page](https://en.wikipedia.org/wiki/ISO_8601) and [offical ISO page](https://www.iso.org/iso-8601-date-and-time-format.html). Duplicate date-time values are dropped. 
-  1) Write the formatted unique date-time values into a txt file.
+1. Generate test data with customized date time pattern, customized data size, and duplicated values (see `Test Data` section).
+1. Read a large list of date-time values from a `txt` file
+1. Validate the date-time value, format it into the standard ISO 8601 format: YYYY-MM-DDThh:mm:ssTZD. For example, `2022-07-20T18:01:02Z`. Details see [ISO 8601 wikipedia page](https://en.wikipedia.org/wiki/ISO_8601) and [offical ISO page](https://www.iso.org/iso-8601-date-and-time-format.html).
+1. Duplicate date-time values are dropped. Depending on the requirements, duplicates can be removed in two ways:
+    1. `UniqueMoment`: Two diffrent date-time values in ISO 8601 format at the same moment are considered as duplicates: `2022-07-20T18:01:02Z` and `2022-07-20T15:01:02-03:00`. This is the defualt setting.
+    1. `UniqueString`: Date-time values at the same moment are not considered as duplicates as long as they are at different time zones.
+1) Write the formatted unique date-time values into a txt file.  
 
+  
 ## Requirements
 
 * Java 8 or over

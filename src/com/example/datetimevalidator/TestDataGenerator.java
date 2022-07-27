@@ -7,11 +7,11 @@ import java.util.Random;
 
 public class TestDataGenerator {
     private final Path path;
-    private final int size;
-    private final int duplicates;
+    private final long size;
+    private final long duplicates;
     private final String dateTimeFormat;
 
-    public TestDataGenerator(Path path, int size, int duplicates, String dateTimeFormat) {
+    public TestDataGenerator(Path path, long size, long duplicates, String dateTimeFormat) {
         this.path = path;
         this.size = size;
         this.duplicates = duplicates;
@@ -24,8 +24,10 @@ public class TestDataGenerator {
         String[] args = {"YYYY", "MM", "DD", "hh", "mm", "ss", "TZD"};
         int[] data = new int[7];
         String newRecord;
+        Random random = new Random();
+        // set seed for debugging
+        random.setSeed(1);
         for (int i = 0; i < size; i++) {
-            Random random = new Random();
             newRecord = dateTimeFormat;
             data[0] = random.nextInt(131) + 1900; // year
             data[1] = random.nextInt(12) + 1; // month
@@ -64,11 +66,11 @@ public class TestDataGenerator {
         return path;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
-    public int getDuplicates() {
+    public long getDuplicates() {
         return duplicates;
     }
 

@@ -4,14 +4,15 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         // INPUTS HERE
-        Path input = Paths.get("data/test_data/1.txt");
-        int size = 100000, duplicates = 1000; // duplicates number has to be smaller than size
-        String dateTimeFormat = "YYYY.MM.DD at hh:mm:ss TZD";
-        Path output = Paths.get("data/output_data/1.txt");
+        Path input = Paths.get("data/test_data/100000_Size_10000_Duplicates_Format1.txt");
+        long size = 100000L, duplicates = 10000L, writeCount = 0L; // duplicates number has to be smaller than size
+        String dateTimeFormat = "YYYY-MM-DDThh:mm:ssTZD";
+        Path output = Paths.get("data/output_data/100000_Size_10000_Duplicates_UniqueStrings_Format1.txt");
 
         // generate test data
         // constructor signature: Path path, int size, int duplicates, String dateTimeFormat
@@ -32,13 +33,30 @@ public class Main {
         DateTimeValidationChecker dateTimeValidationChecker = new DateTimeValidationChecker();
         String line, dateTimeValue;
         while ((line = reader.readLine()) != null){
-            dateTimeValue = dateTimeValidationChecker.validate(line, patternParser);
-            if (dateTimeValue != null) {
-                writer.write(dateTimeValue);
-                writer.newLine();
+            if (dateTimeValidationChecker.validate(line, patternParser)){
+                dateTimeValue = dateTimeValidationChecker.checkUniqueMoments();
+//                 Use the following method for checking unique ISO 8601 date-time strings.
+//                dateTimeValue = dateTimeValidationChecker.checkUniqueStrings();
+                if (dateTimeValue != null) {
+                    writeCount ++;
+                    writer.write(dateTimeValue);
+                    writer.newLine();
+                }
             }
         }
         reader.close();
         writer.close();
+
+        // logs:
+        BufferedWriter writeLogs = new BufferedWriter(new FileWriter(Paths.get("data/logs.txt").toFile(), true));
+        LocalDateTime now = LocalDateTime.now();
+        writeLogs.write(now + "\n");
+        writeLogs.write("Input file: " + input + "\n");
+        writeLogs.write("Input format: " + dateTimeFormat + "\n");
+        writeLogs.write("Input size: " + (size+duplicates) + "\n");
+        writeLogs.write("Input copied duplicates: " + duplicates + "\n");
+        writeLogs.write("The size of valid date-time value is " + writeCount + "\n");
+        writeLogs.newLine();
+        writeLogs.close();
     }
 }
