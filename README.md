@@ -42,8 +42,11 @@ The Date Time Validator program is a simple Java program that can:
   > etc.
 * Sample test data:
   > 100000_Size_0_Duplicates_Format1.txt: 100,000 randomly generated date-time values in Format 1 with 0 copied duplicated values.
+  
   > 100000_Size_10000_Duplicates_Format1.txt: 100,000 randomly generated date-time values in Format 1 with 10,000 copied duplicated values.
+  
   > 100000_Size_10000__Duplicates_Format2.txt: 100,000 randomly generated date-time values in Format 2 with 10,000 copied duplicated values.
+  
   > 100000_Size_10000__Duplicates_Format3.txt: 100,000 randomly generated date-time values in Format 3 with 10,000 copied duplicated values.
   
   > Manually_typed_test_data.txt (should have 4 unique data-time moments, 6 unique date-time strings):
