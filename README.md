@@ -14,8 +14,8 @@ The Date Time Validator program is a simple Java program that can:
   
 ## Requirements
 
-* Java 8 or over
-* Junit 5 or over
+* Java 8+
+* Junit 5+
 
 ## Assumptions
 
@@ -31,7 +31,7 @@ The Date Time Validator program is a simple Java program that can:
 
 ## Test Data:
 
-* To successfully create test data, all the date time information are required: `YYYY` for year, `MM` for month, `DD` for day, `hh` for hour, `mm` for minute, `ss` for second, `TZD` for time zone. All arguments can only present in format once, otherwise will be invalid `dateTimeFormat`.iY
+* To successfully create test data, all the date time information are required: `YYYY` for year, `MM` for month, `DD` for day, `hh` for hour, `mm` for minute, `ss` for second, `TZD` for time zone. All arguments can only present in format once, otherwise will be invalid `dateTimeFormat`.
 * `TZD` conforms ISO 8601 time zone designator: (“Z” for GMT or +hh:mm or -hh:mm)
 * Examples of valid `dateTimeFormat` (Inspired from [SimpleDateFormat Documentation](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html)), sample test data see the `data/example_patterns` directory:
   > Format 1: YYYY-MM-DDThh:mm:ssTZD: 2022-07-20T15:01:02-03:00
@@ -69,3 +69,11 @@ The Date Time Validator program is a simple Java program that can:
 ## Notes:
 * Unique date-time values size limit: According to [HashSet.java source code](http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/687fd7c7986d/src/share/classes/java/util/HashSet.java), the size limit should be `Integer.MAX_VLAUE`, which is 32 bits number at 2147483647, slightly more than 2 billion. When the size exceeds Integer.MAX_VALUE, it overflows. 
 * If the size of unique date time values is large, options can be using a __relational SQL database or noSQL database__ to store hashing keys. Using __LRU cache__ for faster performance as it allows false negatives but no false positives. If a date-time value is present in LRU cache, there is no need to check with database in disk.
+
+## Challenges
+* Mostly the assumptions are based on the challenges I've met during the design and implementation.
+  1. Time zone abbrevations such as "EST", "WST", "CST", etc., are not supported. It's very hard to standardize and validate various time zone abbrevations. This is also the same reason that their use is discouraged in ISO 8601 (as they can be ambiguous).
+  1. The test data with mixed date-time format is not supported: It would be nice if the date-time format is not reinforced meaning we analyze the date-time format based on its value. But this can produce erroneous validated date-time values. For example, `05-05-2022` can be valid in both `DD-MM-YYYY` and `MM-DD-YYYY`. 
+  1. It would be nice that the program can accept date value, date-time value without time zone. But there is no way to validate duplicates between date values and date-time values.
+  1. Enhancements on accepting more date and time forms are needed: for example, accepting month names such as `Jan` or `January`. Currently only month number is acceptable. It can be done rather easily but it increases the complexity.
+  1. Some codes are hard-coded for fast implementation, it is not encouraged.

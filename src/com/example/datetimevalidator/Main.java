@@ -75,7 +75,7 @@ public class Main {
             writeLogs.newLine();
             writeLogs.close();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Arguments wrong");
+            throw new IllegalArgumentException("Invalid Arguments");
         }
     }
 }

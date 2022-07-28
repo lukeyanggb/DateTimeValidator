@@ -5,10 +5,16 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArgumentsTest {
+    // 0        1       2           3               4                   5               6
     // input, size, duplicates, dateTimeFormat, generateTestData, requireUniqueMoment, output
-    private String[] args = {"data/test_data/100000_Size_10000_Duplicates_Format1.txt", "100000", "10000",
-                             "YYYY-MM-DDThh:mm:ssTZD", "true", "true",
-                             "data/output_data/100000_Size_10000_Duplicates_UniqueMoments_Format1.txt"};
+    private String[] args = {
+            "data/test_data/100000_Size_10000_Duplicates_Format1.txt",
+            "100000",
+            "10000",
+            "YYYY-MM-DDThh:mm:ssTZD",
+            "true",
+            "true",
+            "data/output_data/100000_Size_10000_Duplicates_UniqueMoments_Format1.txt"};
 
     // test if input path is valid
     @org.junit.jupiter.api.Test

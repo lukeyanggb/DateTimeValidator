@@ -60,4 +60,3 @@ Input format: YYYY-MM-DDThh:mm:ssTZD
 Input size: 9
 Input copied duplicates: 3
 The size of valid date-time value is 6
-
