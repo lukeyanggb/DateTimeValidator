@@ -71,7 +71,11 @@ public class Main {
             writeLogs.write("Input format: " + dateTimeFormat + "\n");
             writeLogs.write("Input size: " + (size+duplicates) + "\n");
             writeLogs.write("Input copied duplicates: " + duplicates + "\n");
-            writeLogs.write("The size of valid date-time value is " + dateTimeValidationChecker.getUniqueMomentsSize() + "\n");
+            if (requireUniqueMoment){
+                writeLogs.write("The number of valid date-time moments is " + dateTimeValidationChecker.getUniqueMomentsSize() + "\n");
+            } else {
+                writeLogs.write("The number of valid date-time strings is " + dateTimeValidationChecker.getUniqueStringsSize() + "\n");
+            }
             writeLogs.newLine();
             writeLogs.close();
         } catch (Exception e) {

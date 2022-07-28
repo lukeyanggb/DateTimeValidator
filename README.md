@@ -4,12 +4,12 @@
 ### Overview
 The Date Time Validator program is a simple Java program that can:
 1. Generate test data with customized date time pattern, customized data size, and duplicated values (see `Test Data` section).
-1. Read a large list of date-time values from a `txt` file
-1. Validate the date-time value, format it into the standard ISO 8601 format: YYYY-MM-DDThh:mm:ssTZD. For example, `2022-07-20T18:01:02Z`. Details see [ISO 8601 wikipedia page](https://en.wikipedia.org/wiki/ISO_8601) and [offical ISO page](https://www.iso.org/iso-8601-date-and-time-format.html).
-1. Duplicate date-time values are dropped. Depending on the requirements, duplicates can be removed in two ways:
+2. Read a large list of date-time values from a `txt` file
+3. Validate the date-time value, format it into the standard ISO 8601 format: YYYY-MM-DDThh:mm:ssTZD. For example, `2022-07-20T18:01:02Z`. Details see [ISO 8601 wikipedia page](https://en.wikipedia.org/wiki/ISO_8601) and [offical ISO page](https://www.iso.org/iso-8601-date-and-time-format.html).
+4. Duplicate date-time values are dropped. Depending on the requirements, duplicates can be removed in two ways:
     1. `UniqueMoment`: Two different date-time values in ISO 8601 format at the same moment are considered as duplicates: `2022-07-20T18:01:02Z` and `2022-07-20T15:01:02-03:00`. This is the defualt setting.
     1. `UniqueString`: Date-time values at the same moment are not considered as duplicates as long as they are at different time zones.
-1) Write the formatted unique date-time values into a txt file.  
+5. Write the formatted unique date-time values into a txt file.  
 
   
 ## Requirements
@@ -19,8 +19,7 @@ The Date Time Validator program is a simple Java program that can:
 
 ## Assumptions
 
-* The program knows the date-time format of test data(i.e., `dateTimeFormat` in TestDataGenerator). All test data has the same date-time format.
-* The input date-time values have duplicates. Values are generated randomly and can be parsed into the ISO 8601 format.
+* The program knows the date-time format of test data(i.e., `dateTimeFormat` in TestDataGenerator). All test data follow the same date-time format.
 * Year: The randomly generated test data are between Year 1900 to Year 2030. But the program should work for all valid date-time values.
 * Days in a month: For simplicity, months can have up to 31 days (i.e., February 31st is considered valid though there is no 31th day in February).
 * Time zone: According to the [Coordinated Univerisal Time (UTC)](https://en.m.wikipedia.org/wiki/Time_zone), some countries and regions use UTC-12:00, UTC+12:45, UTC+13:00, UTC+14:00. For the purpose of this program, these time zones are considered invalid. Only UTC-11:00 to UTC+12:00 are considered valid.
@@ -63,7 +62,7 @@ The Date Time Validator program is a simple Java program that can:
     2003-01-01T05:00:00Z
     ```
 
-* Testing results see `data/logs.txt`.
+* Output files are in `data/output_data` and the summaries of results see `data/logs.txt`.
 
 
 ## Notes:
